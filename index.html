@@ -1,17 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Software Metrics | SWE 539</title>
-<meta name="description" content="KFUPM SWE 539 notes by Ahmed Abualrob: software metrics formulas (C&amp;K, Li, cohesion, package metrics), refactoring, measurement theory and GQM, with worked slide examples, flashcards, a cohesion calculator and practice questions.">
-<meta name="author" content="Ahmed Abualrob">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Software Metrics | SWE 539">
-<meta property="og:description" content="KFUPM SWE 539 notes by Ahmed Abualrob: software metrics formulas (C&amp;K, Li, cohesion, package metrics), refactoring, measurement theory and GQM, with worked slide examples, flashcards, a cohesion calculator and practice questions.">
-<meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0A0A0A" media="(prefers-color-scheme: dark)">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230A0A0A'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Arial,sans-serif' font-weight='900' font-size='15' fill='%23FAFAFA'%3E539%3C/text%3E%3C/svg%3E">
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>SWE 539 Exam Kit</title>
+<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Math&display=swap">
@@ -794,8 +783,7 @@ details[open] summary::before{content:"−"}
 .scale3 div{border:1px solid var(--gb-strong);border-radius:50%;display:grid;place-items:center;text-align:center;background:var(--glass-strong);box-shadow:var(--shadow);font-size:.8rem;padding:10px;line-height:1.4}
 .scale3 b{font-size:1rem;font-weight:700;display:block;letter-spacing:-.02em}
 </style>
-</head>
-<body>
+
 <!-- shared SVG defs -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
@@ -814,7 +802,7 @@ details[open] summary::before{content:"−"}
   <section class="hero-section">
     <div class="hero-content">
       <h1 class="text-fluid-xl" id="heroTitle">SWE 539<br>Metrics</h1>
-      <div class="glass-layer subtitle-glass">Software metrics: every formula, the slide examples, flashcards and practice</div>
+      <div class="glass-layer subtitle-glass">Software metrics: every formula, worked examples, flashcards and practice</div>
       <div class="contact-links mono">
         <a href="#wall">Start reading</a>
         <a href="#cards">Flashcards</a>
@@ -894,7 +882,7 @@ details[open] summary::before{content:"−"}
 </section>
 
 <!-- ============ OO METRICS ============ -->
-<section class="section" id="oo"><div class="sec-head"><h2 class="text-fluid-md">OO design metrics <span class="prio">priority 1</span></h2><p>C&amp;K is the most popular OO suite: WMC, DIT, NOC, CBO, RFC, LCOM. Li’s suite fixes some C&amp;K limits: NAC, NDC, NLM, CMC, CTA, CTM.</p><p class="src">File 04 · Chidamber &amp; Kemerer (1994) + Li (1998)</p></div>
+<section class="section" id="oo"><div class="sec-head"><h2 class="text-fluid-md">OO design metrics <span class="prio">priority 1</span></h2><p>C&amp;K is the most popular OO suite: WMC, DIT, NOC, CBO, RFC, LCOM. Li’s suite fixes some C&amp;K limits: NAC, NDC, NLM, CMC, CTA, CTM.</p><p class="src">Chidamber &amp; Kemerer (1994) · Li (1998)</p></div>
 
   <div class="f-card">
     <div class="name">WMC · Weighted Methods per Class <span class="dir down">↓ good</span></div>
@@ -903,7 +891,7 @@ details[open] summary::before{content:"−"}
   </div>
 
   <h3>Inheritance metrics: DIT, NOC, NAC, NDC</h3>
-  <p><b>Tap any class</b> in the slide’s tree (Li example). Ancestors turn blue, descendants turn yellow.</p>
+  <p><b>Tap any class</b> in the example tree. Ancestors turn blue, descendants turn yellow.</p>
   <div class="tree-box">
     <figure style="margin:0">
       <div class="fig-scroll">
@@ -944,8 +932,8 @@ details[open] summary::before{content:"−"}
     <div>
       <p><b>DIT has two ambiguities:</b></p>
       <ul>
-        <li>Unclear with multiple inheritance and <b>multiple roots</b> (in the slide’s Fig. b, is DIT(B) 1 or 2?).</li>
-        <li>DIT claims to count classes that can affect a class, but in Fig. a, DIT(A) = DIT(B) = 2 even though B inherits from more classes.</li>
+        <li>Unclear with multiple inheritance and <b>multiple roots</b>. Example: roots C and E; D extends E; B extends C and D. Path B→C has length 1, path B→D→E has length 2. Is DIT(B) 1 or 2?</li>
+        <li>DIT claims to count the classes that can affect a class. Example: one root E; C and D extend E; A extends C; B extends C and D. DIT(A) = DIT(B) = 2, yet B has 3 ancestors (C, D, E) and A has only 2 (C, E).</li>
       </ul>
       <p>Fix → <b>NAC</b>: total number of ancestor classes (unit: class).</p>
     </div>
@@ -979,11 +967,11 @@ details[open] summary::before{content:"−"}
         <text x="200" y="43" text-anchor="middle" font-size="18">A</text><text x="60" y="148" text-anchor="middle" font-size="18">B</text><text x="200" y="148" text-anchor="middle" font-size="18">C</text><text x="340" y="148" text-anchor="middle" font-size="18">D</text>
         <g font-size="15" fill="var(--blue)"><text x="250" y="35" style="fill:var(--blue)">CBO(A)=2</text><text x="60" y="190" text-anchor="middle" style="fill:var(--blue)">CBO(B)=2</text><text x="200" y="190" text-anchor="middle" style="fill:var(--blue)">CBO(C)=3</text><text x="340" y="190" text-anchor="middle" style="fill:var(--blue)">CBO(D)=1</text></g>
       </svg>
-      <figcaption>Slide “CBO Example 1”. A–B aggregation, A→C dependency, B–C and C–D associations. C touches A, B, D → 3.</figcaption>
+      <figcaption>Example 1. A–B aggregation, A→C dependency, B–C and C–D associations. C touches A, B, D → 3.</figcaption>
     </figure>
     <div>
-      <p><b>Slide “CBO Example”:</b> C extends SuperC and uses <code>aSC1</code>, <code>mSC1()</code>; C calls <code>b.mB1()</code>, <code>b.mB2()</code>; A calls <code>c.mC1()</code> → CBO(C) = {SuperC, B, A} = <b>3</b> (B counted once although it is called 3 times).</p>
-      <p><b>Slide “CBO Example 2”</b> (bookshop):</p>
+      <p><b>Example 2:</b> C extends SuperC and uses <code>aSC1</code>, <code>mSC1()</code>; C calls <code>b.mB1()</code>, <code>b.mB2()</code>; A calls <code>c.mC1()</code> → CBO(C) = {SuperC, B, A} = <b>3</b> (B counted once although it is called 3 times).</p>
+      <p><b>Example 3 (bookshop):</b> Customer has orders (calls <code>o.computeCost()</code>) and one CreditCardInfo. Order has books (calls <code>b.computeCost()</code>). RegularBook and EBook extend Book and use its <code>#price</code>.</p>
       <div class="tbl-wrap"><table><thead><tr><th>Class</th><th>Coupled to</th><th class="c">CBO</th></tr></thead><tbody>
         <tr><td>Customer</td><td>Order, CreditCardInfo</td><td class="c">2</td></tr>
         <tr><td>Order</td><td>Customer, Book</td><td class="c">2</td></tr>
@@ -1017,8 +1005,8 @@ details[open] summary::before{content:"−"}
       <figcaption>M = {A1, A2, A3}, R = {B1, B2, C1}. B2 is called twice but counts once. RFC = 3 + 3 = <b>6</b>. C2 is never called, so it is not counted.</figcaption>
     </figure>
     <div>
-      <p><b>Slide RFC example 2 (left case):</b> A.m1→B.m1, B.m2 · A.m2→C.m1 · A.m3→D.m1, D.m2 · A.m4 calls nothing.<br>RS = {A.m1..A.m4, B.m1, B.m2, C.m1, D.m1, D.m2} → <b>RFC = 9</b>.</p>
-      <p><b>Right case:</b> A.m1→B.m2 · A.m2→C.m1 · A.m3→A.m4.<br>R = {B.m2, C.m1, A.m4}, but A.m4 is already in M → RS = {A.m1..A.m4, B.m2, C.m1} → <b>RFC = 6</b>.</p>
+      <p><b>Example 2:</b> A.m1→B.m1, B.m2 · A.m2→C.m1 · A.m3→D.m1, D.m2 · A.m4 calls nothing.<br>RS = {A.m1..A.m4, B.m1, B.m2, C.m1, D.m1, D.m2} → <b>RFC = 9</b>.</p>
+      <p><b>Example 3:</b> A.m1→B.m2 · A.m2→C.m1 · A.m3→A.m4.<br>R = {B.m2, C.m1, A.m4}, but A.m4 is already in M → RS = {A.m1..A.m4, B.m2, C.m1} → <b>RFC = 6</b>.</p>
       <div class="trap"><p>A call to the class’s <b>own</b> method adds nothing (it is already in M). Union, not sum.</p></div>
     </div>
   </div>
@@ -1063,7 +1051,7 @@ details[open] summary::before{content:"−"}
 </section>
 
 <!-- ============ COHESION FAMILY ============ -->
-<section class="section" id="cohesion"><div class="sec-head"><h2 class="text-fluid-md">The cohesion family <span class="prio">most formulas live here</span></h2><p>One class from the slides is used for every cohesion metric. Learn this picture and you can check every answer.</p><p class="src">File 04 · Coupling and cohesion metrics</p></div>
+<section class="section" id="cohesion"><div class="sec-head"><h2 class="text-fluid-md">The cohesion family <span class="prio">most formulas live here</span></h2><p>One example class is used for every cohesion metric. Learn this picture and you can check every answer.</p><p class="src">Coupling and cohesion metrics</p></div>
 
   <figure>
     <div class="fig-scroll">
@@ -1107,11 +1095,11 @@ details[open] summary::before{content:"−"}
     <div class="formula"><math display="block"><mtext>LCOM</mtext><mo>=</mo><mrow><mo>{</mo><mtable columnalign="left left" columnspacing="1.4em" rowspacing="0.5em"><mtr><mtd><mrow><mo>|</mo><mi>P</mi><mo>|</mo><mo>−</mo><mo>|</mo><mi>Q</mi><mo>|</mo></mrow></mtd><mtd><mtext>if |P| &gt; |Q|</mtext></mtd></mtr><mtr><mtd><mn>0</mn></mtd><mtd><mtext>otherwise</mtext></mtd></mtr></mtable></mrow></math></div><p>Same as <b>max(|P| − |Q|, 0)</b>.</p>
     <p>Iⱼ = set of instance variables used by method Mⱼ. If all sets are empty, P = ∅.</p>
     <p><b>Example above:</b> Q = {(m1,m2)} = 1, P = the other 5 pairs → LCOM2 = 5 − 1 = <b>4</b>.</p>
-    <p><b>Slide example 1:</b> I1 = {a,b,c,d,e}, I2 = {a,b,e}, I3 = {x,y,z} → P = {(M1,M3),(M2,M3)} = 2, Q = {(M1,M2)} = 1 → LCOM2 = max(2−1, 0) = <b>1</b>.</p>
+    <p><b>Example 2:</b> I1 = {a,b,c,d,e}, I2 = {a,b,e}, I3 = {x,y,z} → P = {(M1,M3),(M2,M3)} = 2, Q = {(M1,M2)} = 1 → LCOM2 = max(2−1, 0) = <b>1</b>.</p>
     <p class="view"><b>Viewpoints:</b> cohesion is good (promotes encapsulation) · lack of cohesion → split the class into two or more · low cohesion raises complexity and the chance of errors.</p>
-    <p class="view"><b>LCOM1</b> (from the Al Dallal table) = number of pairs that share nothing = |P| (here 5).</p>
+    <p class="view"><b>LCOM1</b> (Al Dallal’s comparison of cohesion metrics) = number of pairs that share nothing = |P| (here 5).</p>
   </div>
-  <div class="trap"><p>“Do you see any problem?” LCOM2 is cut at 0, so many different classes all get <b>0</b>. Slide: when m1 also uses c, Q = 3, P = 0 → 0; the earlier version with Q = 2, P = 1 also gives 0. LCOM2 cannot tell these classes apart.</p></div>
+  <div class="trap"><p>LCOM2’s weakness: it is cut at 0, so many different classes all get <b>0</b>. m1{a,b}, m2{b,c}, m3{c,d}: P = 1, Q = 2 → 0. If m1 also uses c: P = 0, Q = 3 → 0. The two classes differ in cohesion, but LCOM2 cannot tell them apart.</p></div>
 
   <div class="two">
     <div class="f-card">
@@ -1172,7 +1160,7 @@ details[open] summary::before{content:"−"}
       <text x="572" y="55" font-size="17">TCC = 2/6</text><text x="572" y="115" font-size="17" style="fill:var(--blue)">LCC = 3/6</text>
     </svg>
     </div>
-    <figcaption>Slide “TCC vs LCC”. m2 uses a1 and a3 → m1–m2 and m2–m3 are direct (TCC = 2/6). m1 and m3 are indirectly connected through m2 (dashed) → LCC = 3/6. m4 is alone.</figcaption>
+    <figcaption>TCC vs LCC example: m1{a1,a2}, m2{a1,a3}, m3{a3}, m4{a4}, no calls. m2 uses a1 and a3 → m1–m2 and m2–m3 are direct (TCC = 2/6). m1 and m3 are indirectly connected through m2 (dashed) → LCC = 3/6. m4 is alone.</figcaption>
   </figure>
 
   <div class="f-card">
@@ -1182,7 +1170,7 @@ details[open] summary::before{content:"−"}
     <p>CC = (1/2) / 6 = <b>1/12</b></p>
   </div>
 
-  <div class="tbl-wrap"><table><thead><tr><th>Slide class</th><th class="c">LCOM2</th><th class="c">LCOM3</th><th class="c">LCOM4</th><th class="c">LCOM5</th><th class="c">Coh</th><th class="c">TCC</th><th class="c">CC</th></tr></thead><tbody>
+  <div class="tbl-wrap"><table><thead><tr><th>Example class</th><th class="c">LCOM2</th><th class="c">LCOM3</th><th class="c">LCOM4</th><th class="c">LCOM5</th><th class="c">Coh</th><th class="c">TCC</th><th class="c">CC</th></tr></thead><tbody>
     <tr><td>m1..m4 above</td><td class="c">4</td><td class="c">3</td><td class="c">1</td><td class="c">11/12</td><td class="c">5/16</td><td class="c">4/6</td><td class="c">1/12</td></tr>
   </tbody></table></div>
   <div class="trap"><ul>
@@ -1198,8 +1186,8 @@ details[open] summary::before{content:"−"}
       <label for="calc-in" class="eyebrow">Class description</label>
       <textarea id="calc-in" spellcheck="false"></textarea>
       <div class="btns">
-        <button type="button" data-preset="slide">Slide class</button>
-        <button type="button" data-preset="tcc">TCC vs LCC slide</button>
+        <button type="button" data-preset="slide">Example class</button>
+        <button type="button" data-preset="tcc">TCC vs LCC example</button>
         <button type="button" data-preset="q6">Practice Q6</button>
       </div>
     </div>
@@ -1220,12 +1208,12 @@ details[open] summary::before{content:"−"}
 </section>
 
 <!-- ============ PACKAGE ============ -->
-<section class="section" id="pkg"><div class="sec-head"><h2 class="text-fluid-md">Package-level metrics <span class="prio">short file, sure marks</span></h2><p class="src">File 07 · Robert Martin</p></div><div class="two">
+<section class="section" id="pkg"><div class="sec-head"><h2 class="text-fluid-md">Package-level metrics <span class="prio">short file, sure marks</span></h2><p class="src">Robert C. Martin</p></div><div class="two">
     <div class="f-card">
       <div class="name">Package cohesion <span class="dir up">↑ good</span></div>
       <div class="formula"><math display="block"><mtext>Cohesion</mtext><mo>=</mo><mfrac><mtext>actual class couplings</mtext><mrow><mi>n</mi><mo>(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>)</mo></mrow></mfrac></math></div>
       <p>n = number of classes in the package. Range 0 (minimum) to 1 (maximum).</p>
-      <p>Slide: n = 5, 6 relationships → 6 / (5 × 4) = <b>0.3</b></p>
+      <p>Example: n = 5 classes, 6 directed couplings → 6 / (5 × 4) = <b>0.3</b></p>
     </div>
     <figure>
       <svg viewBox="0 0 320 220" role="img" aria-label="Package with classes A to E">
@@ -1239,7 +1227,7 @@ details[open] summary::before{content:"−"}
           <path d="M257 170 V158"/><path d="M257 140 L263 149 L257 158 L251 149 Z" fill="var(--sheet)"/>
         </g>
       </svg>
-      <figcaption>Slide example. B and C inherit A; C–D association; C → E; D ◇ E aggregation. The slide counts 6 relationships. Likely reason: n(n−1) counts ordered pairs, so the two-way C–D link counts twice.</figcaption>
+      <figcaption>B → A and C → A (inheritance), C ↔ D (two-way association, counts 2), C → E, D ◇ E (aggregation). Total 6 directed couplings. n(n−1) counts ordered pairs, so a two-way link counts twice.</figcaption>
     </figure>
   </div>
 
@@ -1290,7 +1278,7 @@ details[open] summary::before{content:"−"}
           <path d="M214 174 H273" marker-end="url(#tri)"/>
         </g>
       </svg>
-      <figcaption>Slide example for <b>Pc</b>: outside classes that depend on Pc = q, r, s → <b>Ca = 3</b>. Inside classes that depend outside = u → <b>Ce = 1</b>. I(Pc) = 1 / (3 + 1) = <b>1/4</b>.</figcaption>
+      <figcaption>Example for <b>Pc</b>. q (in Pa) extends t; r (in Pa) and s (in Pb) use u; u extends v (in Pd). outside classes that depend on Pc = q, r, s → <b>Ca = 3</b>. Inside classes that depend outside = u → <b>Ce = 1</b>. I(Pc) = 1 / (3 + 1) = <b>1/4</b>.</figcaption>
     </figure>
   </div>
   <div class="trap"><ul>
@@ -1301,7 +1289,7 @@ details[open] summary::before{content:"−"}
 </section>
 
 <!-- ============ REFACTORING ============ -->
-<section class="section" id="refac"><div class="sec-head"><h2 class="text-fluid-md">Refactoring <span class="prio">priority 1</span></h2><p class="src">File 06 · Fowler, refactoring.guru</p></div><div class="two">
+<section class="section" id="refac"><div class="sec-head"><h2 class="text-fluid-md">Refactoring <span class="prio">priority 1</span></h2><p class="src">Martin Fowler · refactoring.guru</p></div><div class="two">
     <div>
       <h4>Code smells</h4>
       <p>Not bugs. Violations of design fundamentals that lower code quality. Fowler: “a <b>surface indication</b> that usually corresponds to a <b>deeper problem</b>.” Smells can indicate <b>technical debt</b>.</p>
@@ -1323,10 +1311,10 @@ details[open] summary::before{content:"−"}
   <h3>The common smells</h3>
   <div class="smells">
     <div class="smell">
-      <h4>Duplicated code</h4><p>Same or very similar code in many places. Believed to be the <b>worst</b> smell: a bug fix may not reach every copy; code is bigger than needed. Slide caption: missing inheritance or delegation.</p><p class="fix">→ Extract Method</p>
+      <h4>Duplicated code</h4><p>Same or very similar code in many places. Believed to be the <b>worst</b> smell: a bug fix may not reach every copy; code is bigger than needed. Root cause: missing inheritance or delegation.</p><p class="fix">→ Extract Method</p>
     </div>
     <div class="smell">
-      <h4>Long method</h4><p>Too many lines. Over 20 is usually bad, under 10 usually good, no hard rule. Longer = harder to understand, change, reuse. Slide caption: missing inheritance or delegation.</p><p class="fix">→ Extract Method</p>
+      <h4>Long method</h4><p>Too many lines. Over 20 is usually bad, under 10 usually good, no hard rule. Longer = harder to understand, change, reuse. Root cause: missing inheritance or delegation.</p><p class="fix">→ Extract Method</p>
     </div>
     <div class="smell">
       <h4>Long parameter list</h4><p>Too many parameters. Pass enough so the method can get what it needs, not everything (an object is missing).</p><p class="fix">→ Introduce Parameter Object · Preserve Whole Object</p>
@@ -1552,7 +1540,7 @@ details[open] summary::before{content:"−"}
 </section>
 
 <!-- ============ CH1 ============ -->
-<section class="section" id="ch1"><div class="sec-head"><h2 class="text-fluid-md">Ch 1 · Measurement: what and why</h2><p class="src">File 01</p></div><div class="f-card">
+<section class="section" id="ch1"><div class="sec-head"><h2 class="text-fluid-md">Ch 1 · Measurement: what and why</h2><p class="src">Measurement fundamentals</p></div><div class="f-card">
     <div class="name">Definition</div>
     <p><b>Measurement</b> = assigning numbers or symbols to <b>attributes</b> of <b>entities</b> in the real world, by <b>clearly defined rules</b>.</p>
     <p><b>Entity</b> = an object (person, room, class, car) or an event (journey, testing phase). <b>Attribute</b> = a property of an entity (area, colour, cost, size, complexity, number of wheels).</p>
@@ -1594,7 +1582,7 @@ details[open] summary::before{content:"−"}
 </section>
 
 <!-- ============ CH2 ============ -->
-<section class="section" id="ch2"><div class="sec-head"><h2 class="text-fluid-md">Ch 2 · Basics of measurement</h2><p class="src">File 02 · lots of “classify” questions</p></div><div class="two">
+<section class="section" id="ch2"><div class="sec-head"><h2 class="text-fluid-md">Ch 2 · Basics of measurement</h2><p class="src">Representation, scales, meaningfulness</p></div><div class="two">
     <div>
       <h4>Representational theory</h4>
       <p>Data must <b>represent</b> the attribute, and manipulating the data must <b>preserve</b> the relationships we observe among entities.</p>
@@ -1628,6 +1616,7 @@ details[open] summary::before{content:"−"}
       <tr><td>A much taller than B</td><td>M(A) &gt; M(B) + 15</td></tr>
       <tr><td>A higher than B if sitting on C’s shoulders</td><td>0.7 M(A) + 0.8 M(C) &gt; M(B)</td></tr>
     </tbody></table></div>
+    <p><b>Facts:</b> Frankie is taller than Wonderman · Frankie and Wonderman are tall, Peter is not · Frankie and Wonderman are both much taller than Peter, but Frankie is not much taller than Wonderman · Peter sitting on Wonderman’s shoulders is higher than Frankie.</p>
     <p><b>Valid mapping:</b> Wonderman 72, Frankie 84, Peter 42. Checks: 84 &gt; 72 · 72 &gt; 70 · 84 &gt; 42+15 = 57 · 72 &gt; 57 · 0.7(42) + 0.8(72) = 87 &gt; 84 ✓.</p>
     <p><b>Invalid mapping:</b> Peter = 60. Then Peter + 15 = 75 and Wonderman 72 &gt; 75 is false, but Wonderman <b>is</b> much taller than Peter → “much taller than” breaks.</p>
   </div>
@@ -1654,7 +1643,7 @@ details[open] summary::before{content:"−"}
       <div class="f-card">
         <div class="name">McCabe cyclomatic number</div>
         <div class="formula"><math display="block"><mi>V</mi><mo>(</mo><mi>G</mi><mo>)</mo><mo>=</mo><mi>e</mi><mo>−</mo><mi>n</mi><mo>+</mo><mn>2</mn><mo>=</mo><mi>d</mi><mo>+</mo><mn>1</mn></math></div>
-        <p>e = edges, n = nodes, d = decisions. = number of linearly independent paths. Slide graph: V(G) = 5.</p>
+        <p>e = edges, n = nodes, d = decisions. = number of linearly independent paths. Example: 4 decisions → V(G) = 5.</p>
         <p class="view">Criticism: many programs with many decisions are still easy to understand → V(G) can mislead as a complexity measure.</p>
       </div>
     </div>
@@ -1665,7 +1654,7 @@ details[open] summary::before{content:"−"}
     <div><p><b>Direct</b>: no other attribute needed. Height, mass, volume · LOC · test schedule (elapsed hours) · number of defects · months worked.</p></div>
     <div><p><b>Indirect</b>: combines measures, needs a model (density = mass / volume). Productivity = LOC / person-months · module defect density = defects / size · defect detection density = defects / total defects · requirements stability = initial reqs / total reqs · test effectiveness = items covered / total items · system spoilage = effort fixing faults / total effort.</p></div>
   </div>
-  <p class="view">Slides: raw fault counts per system area (direct) show 5 bad subsystems; fault density (indirect, faults/KLOC) shows area C2 (only 4 KLOC of 2 million) is the real headache.</p>
+  <p class="view">Example: raw fault counts per system area (direct) point at 5 large subsystems; fault density (indirect, faults/KLOC) reveals a small area (4 KLOC of a 2-million-line system) as the real problem.</p>
 
   <h3>Scale types (from poorest to richest)</h3>
   <p><b>Admissible transformation</b> = mapping from one acceptable measure to another. The <b>more restrictive</b> the admissible transformations, the <b>more sophisticated</b> the scale.</p>
@@ -1688,7 +1677,7 @@ details[open] summary::before{content:"−"}
     <tr><td>True zero</td><td></td><td></td><td></td><td class="c yes">✓</td></tr>
   </tbody></table></div>
 
-  <h4>Slide exercises: valid or invalid transformation?</h4>
+  <h4>Exercises: valid or invalid transformation?</h4>
   <div class="tbl-wrap"><table><thead><tr><th>Scale</th><th>Base M</th><th>Candidate</th><th>Verdict</th><th>Why</th></tr></thead><tbody>
     <tr><td>Ordinal</td><td>1,2,3,4,5</td><td>1,2,3,4,10 · 0.1,1001,1002,4570,4573</td><td class="yes">valid</td><td>order kept</td></tr>
     <tr><td>Ordinal</td><td>1,2,3,4,5</td><td>1,2,3,4,<b>4</b></td><td class="no">invalid</td><td>two classes merged</td></tr>
@@ -1718,14 +1707,14 @@ details[open] summary::before{content:"−"}
     <tr><td>A week has eight days / sky is green / triangle has four sides</td><td class="yes">meaningful</td><td>but <b>false</b></td></tr>
   </tbody></table></div>
 
-  <h4>Mean vs median on ordinal data (slide example)</h4>
+  <h4>Mean vs median on ordinal data (example)</h4>
   <div class="tbl-wrap"><table><thead><tr><th></th><th class="c">trivial</th><th class="c">simple</th><th class="c">moderate</th><th class="c">complex</th><th class="c">incomprehensible</th></tr></thead><tbody>
     <tr><td>M</td><td class="c">1</td><td class="c">2</td><td class="c">3</td><td class="c">4</td><td class="c">5</td></tr>
     <tr><td>M′</td><td class="c">1</td><td class="c">2</td><td class="c">3</td><td class="c">4</td><td class="c">10</td></tr>
   </tbody></table></div>
   <p>X = trivial, simple, simple, moderate, incomprehensible. Y = simple, moderate×3, complex×3.</p>
   <ul>
-    <li>Using M: mean X = 13/5 = <b>2.6</b>, mean Y = 23/7 ≈ <b>3.29</b> (slide writes 3.1) → Y looks higher.</li>
+    <li>Using M: mean X = 13/5 = <b>2.6</b>, mean Y = 23/7 ≈ <b>3.29</b> → Y looks higher.</li>
     <li>Using M′: mean X = 18/5 = <b>3.6</b>, mean Y unchanged ≈ 3.29 → now X looks higher. <b>The mean flips</b>, so it is not meaningful.</li>
     <li>Median X = 2, median Y = 3 under <b>both</b> M and M′ → the median is meaningful for ordinal data.</li>
   </ul>
@@ -1737,7 +1726,7 @@ details[open] summary::before{content:"−"}
 </section>
 
 <!-- ============ CH3 ============ -->
-<section class="section" id="ch3"><div class="sec-head"><h2 class="text-fluid-md">Ch 3 · Goal-based framework (GQM)</h2><p class="src">File 03</p></div><div class="tbl-wrap"><table><thead><tr><th>Entity class</th><th>What it is</th><th>Internal examples</th><th>External examples</th></tr></thead><tbody>
+<section class="section" id="ch3"><div class="sec-head"><h2 class="text-fluid-md">Ch 3 · Goal-based framework (GQM)</h2><p class="src">Classifying measures · GQM · CMMI</p></div><div class="tbl-wrap"><table><thead><tr><th>Entity class</th><th>What it is</th><th>Internal examples</th><th>External examples</th></tr></thead><tbody>
     <tr><td><b>Process</b></td><td>software-related activities (time-ordered)</td><td>duration, effort, number of incidents</td><td>cost-effectiveness, inspection effectiveness</td></tr>
     <tr><td><b>Product</b></td><td>any artifact or document from a process</td><td>size (LOC), cyclomatic complexity, coupling</td><td>reliability, usability, failures seen by users, DB search time</td></tr>
     <tr><td><b>Resource</b></td><td>input needed by a process: personnel, material (tools), methods</td><td>team size, price</td><td>productivity, tool usability</td></tr>
@@ -1783,11 +1772,11 @@ details[open] summary::before{content:"−"}
     </div>
   </div>
   <div class="tip"><p>One metric can answer <b>several</b> questions: M1 is used by Q1, Q2 and Q3. The tree is a many-to-many mapping, not a strict hierarchy.</p></div>
-  <p class="view">Other slide trees: coding standard (who uses it? productivity? quality?), inspection process (plan / monitor &amp; control / improve), reliability (“decide when software can ship”), maintainability, LLM-generated unit tests (coverage, mutation score, review effort, flaky rate).</p>
+  <p class="view">Other example GQM trees: coding standard (who uses it? productivity? quality?), inspection process (plan / monitor &amp; control / improve), reliability (“decide when software can ship”), maintainability, LLM-generated unit tests (coverage, mutation score, review effort, flaky rate).</p>
   <div class="f-card">
     <div class="name">Goal template (fill the 5 slots)</div>
     <div class="formula text" style="line-height:1.9">Analyze <b>&lt;object of study&gt;</b><br>for the purpose of <b>&lt;purpose&gt;</b><br>with respect to their <b>&lt;quality focus&gt;</b><br>from the point of view of the <b>&lt;perspective&gt;</b><br>in the context of <b>&lt;context&gt;</b></div>
-    <p>Slide: Analyze <b>code clone refactoring</b> · for the purpose of <b>improving software quality</b> · with respect to <b>CC and LOC</b> · from the view of the <b>developer</b> · in the context of <b>three open-source projects</b>.</p>
+    <p>Example: Analyze <b>code clone refactoring</b> · for the purpose of <b>improving software quality</b> · with respect to <b>CC and LOC</b> · from the view of the <b>developer</b> · in the context of <b>three open-source projects</b>.</p>
     <p class="view">Object = product, process, model, metric, theory · Purpose = evaluate, predict, motivate… · Quality focus = effectiveness, cost, reliability… · Perspective = developer, manager, customer, researcher · Context = subjects (people) + objects (artifacts).</p>
     <p class="view">Alternative template: <b>Purpose</b> (to evaluate the maintenance process in order to improve it) · <b>Perspective</b> (examine the cost from the manager’s view) · <b>Environment</b> (process, people, problem factors, methods, tools, constraints).</p>
   </div>
@@ -1814,7 +1803,7 @@ details[open] summary::before{content:"−"}
 </section>
 
 <!-- ============ EMPIRICAL ============ -->
-<section class="section" id="emp"><div class="sec-head"><h2 class="text-fluid-md">Empirical investigation</h2><p class="src">File 05 (labelled “Chapter 4 – Empirical investigation”)</p></div><p>Goal: apply the scientific method to SE. Empirical studies do <b>not prove</b> a theory; they give evidence to <b>support or refute</b> it, using a sample of all possible values.</p>
+<section class="section" id="emp"><div class="sec-head"><h2 class="text-fluid-md">Empirical investigation</h2><p class="src">Experiments · case studies · surveys</p></div><p>Goal: apply the scientific method to SE. Empirical studies do <b>not prove</b> a theory; they give evidence to <b>support or refute</b> it, using a sample of all possible values.</p>
   <figure>
     <svg viewBox="0 0 520 190" role="img" aria-label="Theory versus observation: cause construct to effect construct, treatment to output">
       <g stroke="var(--ink)" stroke-width="2" fill="var(--sheet)"><rect x="110" y="30" width="120" height="44" rx="6"/><rect x="330" y="30" width="120" height="44" rx="6"/><rect x="110" y="120" width="120" height="44" rx="6"/><rect x="330" y="120" width="120" height="44" rx="6"/></g>
@@ -1991,7 +1980,7 @@ details[open] summary::before{content:"−"}
     <details><summary>Answer</summary><div class="ans">
       <p>X: Q = {(m1,m2)} = 1, P = 2 → LCOM2 = <b>1</b>.</p>
       <p>Y: every pair shares something → Q = 3, P = 0 → max(0 − 3, 0) = <b>0</b>.</p>
-      <p>Change X to m1{a}, m2{a,b}, m3{b}: Q = 2, P = 1 → max(−1, 0) = <b>0</b> as well. So classes with different cohesion all get 0. LCOM2 does not discriminate well (the slide’s “problem”).</p>
+      <p>Change X to m1{a}, m2{a,b}, m3{b}: Q = 2, P = 1 → max(−1, 0) = <b>0</b> as well. So classes with different cohesion all get 0. LCOM2 does not discriminate well.</p>
     </div></details>
   </div>
 
@@ -2165,7 +2154,7 @@ details[open] summary::before{content:"−"}
 </main>
 
 <footer class="footer">
-    <p class="footer-text">KFUPM SWE 539 notes by Ahmed Abualrob · from the 7 lecture files (Fenton, C&amp;K, Li, Fowler, Martin)</p>
+    <p class="footer-text">KFUPM SWE 539 notes by Ahmed Abualrob · based on Fenton &amp; Bieman, Chidamber &amp; Kemerer, Li, Fowler and Martin</p>
   </footer>
 </div>
 
@@ -2251,21 +2240,21 @@ details[open] summary::before{content:"−"}
     ["OO","CTM (= MPC)","Number of DIFFERENT messages sent to other classes","Messages to locally created objects are excluded."],
     ["OO","CBO_U · CBO_IUB · OCMEC","U = classes it uses · IUB = classes that use it · OCMEC = parameter types","CBO_U and CBO_IUB exclude inherited classes."],
     ["OO","Coupling types: strongest → weakest","Content → Common → Control → Stamp → Data → Routine call → Type use → Import → External","Content: always avoid. Common = globals."],
-    ["Cohesion","LCOM / LCOM2 (C&K)","max(|P| − |Q|, 0)","P = pairs sharing NO attribute, Q = pairs sharing ≥ 1. Slide class: 5 − 1 = 4."],
-    ["Cohesion","LCOM1","|P| = pairs sharing no attribute","Slide class: 5."],
-    ["Cohesion","LCOM3 (Li & Henry)","Number of components · edge = shared attribute","Slide class: {m1,m2},{m3},{m4} = 3."],
-    ["Cohesion","LCOM4 (Hitz & Montazeri)","Number of components · edge = shared attribute OR call","Slide class: calls join all → 1."],
-    ["Cohesion","LCOM5 (Henderson-Sellers)","(m − Σp(Aᵢ)/a) / (m − 1)","Slide: (4 − 5/4) / 3 = 11/12. Lower is better."],
-    ["Cohesion","Coh (Briand)","Σp(Aᵢ) / (m · a)","Slide: 5/16. Higher is better."],
-    ["Cohesion","TCC (Bieman & Kang)","directly connected pairs / (m(m−1)/2)","Direct = share an attribute, counting attributes used by methods it calls. Slide: 4/6."],
+    ["Cohesion","LCOM / LCOM2 (C&K)","max(|P| − |Q|, 0)","P = pairs sharing NO attribute, Q = pairs sharing ≥ 1. Example class: 5 − 1 = 4."],
+    ["Cohesion","LCOM1","|P| = pairs sharing no attribute","Example class: 5."],
+    ["Cohesion","LCOM3 (Li & Henry)","Number of components · edge = shared attribute","Example class: {m1,m2},{m3},{m4} = 3."],
+    ["Cohesion","LCOM4 (Hitz & Montazeri)","Number of components · edge = shared attribute OR call","Example class: calls join all → 1."],
+    ["Cohesion","LCOM5 (Henderson-Sellers)","(m − Σp(Aᵢ)/a) / (m − 1)","Example class: (4 − 5/4) / 3 = 11/12. Lower is better."],
+    ["Cohesion","Coh (Briand)","Σp(Aᵢ) / (m · a)","Example class: 5/16. Higher is better."],
+    ["Cohesion","TCC (Bieman & Kang)","directly connected pairs / (m(m−1)/2)","Direct = share an attribute, counting attributes used by methods it calls. Example class: 4/6."],
     ["Cohesion","LCC (Bieman & Kang)","(direct + indirect pairs) / total pairs","Indirect = linked through a chain of methods. Always LCC ≥ TCC."],
-    ["Cohesion","CC (Bonja & Kidanmariam)","Σ Sim(mᵢ,mⱼ) / total pairs, Sim = |Iᵢ∩Iⱼ| / |Iᵢ∪Iⱼ|","Raw sets, no calls. Slide: (1/2)/6 = 1/12."],
+    ["Cohesion","CC (Bonja & Kidanmariam)","Σ Sim(mᵢ,mⱼ) / total pairs, Sim = |Iᵢ∩Iⱼ| / |Iᵢ∪Iⱼ|","Raw sets, no calls. Example class: (1/2)/6 = 1/12."],
     ["Cohesion","Which cohesion metrics use method calls?","LCOM4, TCC, LCC","LCOM2, LCOM3, LCOM5, Coh and CC use attribute access only."],
     ["Cohesion","Cohesion types: best → worst","Functional → Layer → Communicational → Sequential → Procedural → Temporal → Utility","Good classes show communicational cohesion (same data)."],
-    ["Package","Package cohesion","actual class couplings / n(n − 1)","Range 0–1. Slide: 6 / (5 × 4) = 0.3."],
+    ["Package","Package cohesion","actual class couplings / n(n − 1)","Range 0–1. Example: 5 classes, 6 directed couplings → 6 / (5 × 4) = 0.3."],
     ["Package","Ca (afferent)","Classes OUTSIDE that depend on classes INSIDE","Fan-in. Afferent = Arriving."],
     ["Package","Ce (efferent)","Classes INSIDE that depend on classes OUTSIDE","Fan-out. Efferent = Exiting."],
-    ["Package","Instability I","Ce / (Ca + Ce)","0 = completely stable, 1 = completely unstable. Slide Pc: 1/(3+1) = 1/4. Count classes, not arrows."],
+    ["Package","Instability I","Ce / (Ca + Ce)","0 = completely stable, 1 = completely unstable. Example: Ca 3, Ce 1 → 1/(3+1) = 1/4. Count classes, not arrows."],
     ["Package","What does “stable” mean here?","The amount of work needed to make a change","Not how often it changes. Many dependents → hard to change → stable."],
     ["Refactoring","Refactoring (Fowler)","Change the internal structure without changing external behaviour","A disciplined way to clean code that minimises the chance of bugs."],
     ["Refactoring","Clone types I–IV","I layout/comments · II + names, literals, types · III + statements changed · IV same computation, different syntax","Duplicated code is believed to be the worst smell."],
@@ -2347,5 +2336,5 @@ details[open] summary::before{content:"−"}
   document.getElementById("close-all").addEventListener("click",function(){document.querySelectorAll("#practice details").forEach(function(d){d.open=false})});
 })();
 </script>
-</body>
-</html>
+
+</body></html>
