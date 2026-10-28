@@ -3,7 +3,7 @@
 Study notes for **SWE 539 Software Metrics** at KFUPM (Dr. Mohammad Alshayeb), written by Ahmed Abualrob.
 One self-contained page, in the same style as my ICS 553 notes.
 
-**Live page:** `https://<your-username>.github.io/<repo-name>/` (after you turn on GitHub Pages, see below)
+**Live page:** `https://<your-username>.github.io/SWE-539-Exam-Kit/` (after you turn on GitHub Pages, see below)
 
 ## What is inside
 
