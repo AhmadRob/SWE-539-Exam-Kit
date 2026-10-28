@@ -3,7 +3,7 @@
 Study notes for **SWE 539 Software Metrics** at KFUPM (Dr. Mohammad Alshayeb), written by Ahmed Abualrob.
 One self-contained page, in the same style as my ICS 553 notes.
 
-**Live page:** `[[https://<your-username>.github.io/SWE-539-Exam-Kit/](https://github.com/AhmadRob/SWE-539-Exam-Kit)](https://ahmadrob.github.io/SWE-539-Exam-Kit/)` (after you turn on GitHub Pages, see below)
+**Live page:** https://ahmadrob.github.io/SWE-539-Exam-Kit/
 
 ## What is inside
 
@@ -20,7 +20,7 @@ One self-contained page, in the same style as my ICS 553 notes.
 
 Works on phones, has light and dark mode, and needs no build step.
 
-## Publish with GitHub Pages
+## How this site is published
 
 1. Create a new repository and upload `index.html`, `.nojekyll` and this `README.md` to the root of the `main` branch.
 2. Open **Settings → Pages**.
